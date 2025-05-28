@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadcu0es6xhy0"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/button.gd" id="1_uhg3r"]
+[ext_resource type="Texture2D" uid="uid://dyhf318bx10r8" path="res://Sprites/Objects/button-spritesheet.png" id="1_y4hws"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3a1i"]
+atlas = ExtResource("1_y4hws")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s83vx"]
+radius = 4.0
+
+[node name="Button" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_uhg3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_a3a1i")
+hframes = 2
+vframes = 3
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s83vx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

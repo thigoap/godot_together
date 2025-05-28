@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmjvcnybp0cfl"]
+
+[ext_resource type="Script" path="res://Prefabs/UI/Inventory/inv_ui.gd" id="1_nhtri"]
+[ext_resource type="PackedScene" uid="uid://b2arw6g8jjrx3" path="res://Prefabs/UI/Inventory/inv_ui_slot.tscn" id="2_p5d8i"]
+[ext_resource type="PackedScene" uid="uid://dwohiqd6p2snw" path="res://Prefabs/UI/Inventory/inv_avatar_slot.tscn" id="2_si0tk"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 48.0
+offset_right = 432.0
+offset_bottom = 130.0
+script = ExtResource("1_nhtri")
+
+[node name="GridContainer00" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 340
+columns = 2
+
+[node name="Inv_Avatar_slot" parent="GridContainer00" instance=ExtResource("2_si0tk")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Inv_Avatar_slot2" parent="GridContainer00" instance=ExtResource("2_si0tk")]
+modulate = Color(1, 1, 1, 0.25098)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="GridContainer01" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 32.0
+offset_bottom = 72.0
+
+[node name="Inv_UI_slot1" parent="GridContainer01" instance=ExtResource("2_p5d8i")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Inv_UI_slot2" parent="GridContainer01" instance=ExtResource("2_p5d8i")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="GridContainer02" type="GridContainer" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+offset_left = 372.0
+offset_top = 36.0
+offset_right = 388.0
+offset_bottom = 72.0
+
+[node name="Inv_UI_slot1" parent="GridContainer02" instance=ExtResource("2_p5d8i")]
+layout_mode = 2
+
+[node name="Inv_UI_slot2" parent="GridContainer02" instance=ExtResource("2_p5d8i")]
+layout_mode = 2

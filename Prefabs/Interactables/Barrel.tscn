@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7dha43ypw03q"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/barrel.gd" id="1_wfkys"]
+[ext_resource type="Resource" uid="uid://q1y4mr0udcfo" path="res://Inventory/Items/fire.tres" id="2_685l3"]
+[ext_resource type="Resource" uid="uid://fd603xcmu0nq" path="res://Inventory/Items/water.tres" id="3_l6med"]
+[ext_resource type="Texture2D" uid="uid://b5nyww4d342xj" path="res://Sprites/Objects/barrel.png" id="4_q8edp"]
+[ext_resource type="PackedScene" uid="uid://bjiluyn4gpher" path="res://Interactions/Interaction Area/Interaction Area.tscn" id="5_2n8m1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2g1od"]
+size = Vector2(14, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xjlpv"]
+radius = 8.06226
+
+[node name="Barrel" type="StaticBody2D"]
+z_index = 10
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_wfkys")
+loot = ExtResource("3_l6med")
+consumesp1 = ExtResource("2_685l3")
+consumesp2 = ExtResource("3_l6med")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_q8edp")
+hframes = 3
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_2g1od")
+
+[node name="InteractionArea" parent="." instance=ExtResource("5_2n8m1")]
+collision_mask = 11
+action_name = "open or close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_xjlpv")

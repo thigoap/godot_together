@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwohiqd6p2snw"]
+
+[ext_resource type="Texture2D" uid="uid://r55sq02nt2u0" path="res://Sprites/UI/inventory_avatar.png" id="2_4v80q"]
+
+[node name="Inv_Avatar_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4v80q")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ItemSprite2D" type="Sprite2D" parent="CenterContainer/Panel"]

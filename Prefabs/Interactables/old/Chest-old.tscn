@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://cutftfseogi08"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/chest.gd" id="1_ndrmy"]
+[ext_resource type="Resource" uid="uid://c60734ji562jc" path="res://Inventory/Items/key.tres" id="2_vdv3s"]
+[ext_resource type="Texture2D" uid="uid://b36hjbfv4fn5p" path="res://Sprites/Objects/chest-spritesheet.png" id="3_dk672"]
+[ext_resource type="PackedScene" uid="uid://bjiluyn4gpher" path="res://Interactions/Interaction Area/Interaction Area.tscn" id="4_om10c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80umw"]
+atlas = ExtResource("3_dk672")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wx5dv"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hr77"]
+size = Vector2(12, 8)
+
+[sub_resource type="Animation" id="Animation_v75r0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1k2ko"]
+resource_name = "chest_close"
+length = 0.3
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(1, 0), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cwwyj"]
+resource_name = "chest_open"
+length = 0.3
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wqsk"]
+_data = {
+"RESET": SubResource("Animation_v75r0"),
+"chest_close": SubResource("Animation_1k2ko"),
+"chest_open": SubResource("Animation_cwwyj")
+}
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_ndrmy")
+loot = ExtResource("2_vdv3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_80umw")
+hframes = 3
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_wx5dv")
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_om10c")]
+collision_mask = 3
+action_name = "open or close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_4hr77")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5wqsk")
+}
