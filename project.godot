@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Together"
-run/main_scene="res://Scenes/01_Level01.tscn"
+run/main_scene="res://Scenes/00_MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Sprites/icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/game_manager.gd"
 
 [display]
 

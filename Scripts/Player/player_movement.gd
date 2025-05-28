@@ -4,8 +4,6 @@ extends CharacterBody2D
 @onready var animation_effects = $"AnimationEffects"
 @onready var hurt_Timer = $"hurtTimer"
 
-# @onready var ray_cast_2d = $"PlayerSprite2D/RayCast2D"
-
 const max_speed: int = 120
 const acceleration: int = 5
 const friction: int = 8
@@ -23,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 	
 	if input:
+	# if input and not GameManager.paused:
 		animation_player.speed_scale = (velocity/max_speed).distance_to(Vector2.ZERO) + 0.5
 		if Input.is_action_pressed("up"):
 			animation_player.play("walk_up")

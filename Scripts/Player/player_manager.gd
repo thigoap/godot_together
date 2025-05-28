@@ -6,9 +6,6 @@ var player = true
 @onready var animation_player_01 = $"../Player01/AnimationPlayer"
 @onready var animation_player_02 = $"../Player02/AnimationPlayer"
 
-#@onready var player_actions_01 = $"../Player01/PlayerActions"
-#@onready var player_actions_02 = $"../Player02/PlayerActions"
-
 @onready var inv_avatar_slot = $"../Inventory/GridContainer00/Inv_Avatar_slot"
 @onready var inv_avatar_slot2 = $"../Inventory/GridContainer00/Inv_Avatar_slot2"
 @onready var grid_container_01 = $"../Inventory/GridContainer01"
@@ -20,10 +17,6 @@ func _ready():
 	player_movement_01.set_physics_process(player)
 	player_movement_02.set_process(!player)
 	player_movement_02.set_physics_process(!player)
-	#player_actions_01.set_process(player)
-	#player_actions_01.set_physics_process(player)
-	#player_actions_02.set_process(!player)
-	#player_actions_02.set_physics_process(!player)
 	
 	print('player 01') if player else print('player 02')
 
@@ -34,15 +27,14 @@ func _process(delta):
 		swapPlayer()
 	
 func swapPlayer():
+	#if GameManager.paused:
+		#return
 	player = !player
 	player_movement_01.set_process(player)
 	player_movement_01.set_physics_process(player)
 	player_movement_02.set_process(!player)
 	player_movement_02.set_physics_process(!player)
-	#player_actions_01.set_process(player)
-	#player_actions_01.set_physics_process(player)
-	#player_actions_02.set_process(!player)
-	#player_actions_02.set_physics_process(!player)
+
 	if player:
 		animation_player_02.play("idle_down")
 		inv_avatar_slot.modulate.a = 1

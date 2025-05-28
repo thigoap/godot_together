@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://be7y6hvmhfpws"]
+[gd_scene load_steps=18 format=3 uid="uid://be7y6hvmhfpws"]
 
 [ext_resource type="Texture2D" uid="uid://bjsdh6tfdnvwe" path="res://Tilesets/wall-torch.png" id="1_kjc4g"]
-[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_x4swb"]
 [ext_resource type="Texture2D" uid="uid://br7m1uy5egn7q" path="res://Tilesets/godotiles-v2.png" id="2_76hem"]
 [ext_resource type="PackedScene" uid="uid://f5n7dedjofh7" path="res://Prefabs/Players/Player02.tscn" id="3_5ls7p"]
 [ext_resource type="PackedScene" uid="uid://cns1ngogbtksa" path="res://Prefabs/Players/Player01.tscn" id="3_o6flj"]
@@ -140,15 +139,11 @@ sources/1 = SubResource("TileSetAtlasSource_0ucei")
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("1_x4swb")
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="." instance=ExtResource("8_is2ey")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("8_is2ey")]
+process_mode = 3
 visible = false
-offset_left = 232.0
-offset_top = 144.0
-offset_right = 232.0
-offset_bottom = 144.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -162,22 +157,22 @@ layer_1/tile_data = PackedInt32Array(65542, 65540, 0, 131078, 65540, 1, 65543, 1
 layer_2/name = "elements"
 layer_2/tile_data = PackedInt32Array(131089, 1, 0)
 
+[node name="Inventory" parent="." instance=ExtResource("7_iibbf")]
+offset_left = 38.0
+offset_right = 445.0
+offset_bottom = 120.0
+
 [node name="Player01" parent="." groups=["player"] instance=ExtResource("3_o6flj")]
 position = Vector2(168, 208)
 
 [node name="Player02" parent="." groups=["player"] instance=ExtResource("3_5ls7p")]
-position = Vector2(216, 200)
+position = Vector2(224, 168)
 
 [node name="Player Manager" parent="." instance=ExtResource("4_ef2fm")]
 position = Vector2(136, 8)
 
 [node name="Interaction Manager" parent="." instance=ExtResource("5_q6vvp")]
 position = Vector2(136, 8)
-
-[node name="Inventory" parent="." instance=ExtResource("7_iibbf")]
-offset_left = 38.0
-offset_right = 445.0
-offset_bottom = 120.0
 
 [node name="Door" parent="." instance=ExtResource("6_a4dqf")]
 position = Vector2(136, 36)
